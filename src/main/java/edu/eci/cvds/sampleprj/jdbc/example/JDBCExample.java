@@ -115,7 +115,7 @@ public class JDBCExample {
             np.add(name);
         }
         con.commit();
-        
+
         return np;
     }
 
