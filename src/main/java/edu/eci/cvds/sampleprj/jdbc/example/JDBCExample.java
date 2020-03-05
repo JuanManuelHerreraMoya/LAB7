@@ -126,14 +126,29 @@ public class JDBCExample {
      * @param codigoPedido código del pedido cuyo total se calculará
      * @return el costo total del pedido (suma de: cantidades*precios)
      */
-    public static int valorTotalPedido(Connection con, int codigoPedido){
-        
+    public static int valorTotalPedido(Connection con, int codigoPedido)throws SQLException{
+        PreparedStatement vtp= null;
+        String consultaValor = "SELECT pedido_fk,SUM(precio*cantidad) AS total FROM ORD_PRODUCTOS,ORD_DETALLE_PEDIDO " +
+                "WHERE producto_fk=codigo AND pedido_fk = ? " +
+                "GROUP BY pedido_fk";
+        vtp = con.prepareStatement(consultaValor);
+        vtp.setInt(1, codigoPedido);
+
+        ResultSet rs = vtp.executeQuery();
+        String aux = null;
+        while (rs.next()) {
+            aux = rs.getString("total");
+        }
+        if (aux == null){
+            throw new NullPointerException("Consulta Vacia");
+        }
+        con.commit();
         //Crear prepared statement
         //asignar parámetros
         //usar executeQuery
         //Sacar resultado del ResultSet
         
-        return 0;
+        return Integer.parseInt(aux);
     }
     
 
