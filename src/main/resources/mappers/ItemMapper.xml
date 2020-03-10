@@ -3,9 +3,16 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper">
-
-
-    
-    
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.TipoItemMapper">
+	<resultMap type="Item" id ="ItemResult">
+			<id column = "id" property="id"/>
+			<result column = "nombre" property="nombre"/>
+			<result column = "descripcion" property="descripcion"/>
+			<result column = "fechalanzamiento" property="fechalanzamiento"/>
+			<result column = "tarifaxdia" property="tarifaxdia"/>
+			<result column = "formatorenta" property="formatorenta"/>
+			<result column = "genero" property="genero"/>
+			<result association javaType = "TIPOITEM_id" property="TIPOITEM_id"/>
+			<collection property='propiedad3' ofType='Detalle' resultMap='DetalleResult'></collection>
+	</resultMap>         
 </mapper>

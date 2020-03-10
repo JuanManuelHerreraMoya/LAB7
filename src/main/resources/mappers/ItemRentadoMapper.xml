@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper">
+	<resultMap type="ItemRentado" id ="ItemRentadoResult">
+			<id column = "id" property="id"/>
+			<association javaType = "Clientes_documento" property="CLIENTES_documentos"/>
+			<association javaType = "ITEMS_id" property="ITEMS_id"/>
+			<result column = "fechainiciorenta" property="fechainiciorenta"/>
+			<result column = "fechafinrenta" property="fechafinrenta"/>
+			<collection property='propiedad3' ofType='Detalle' resultMap='DetalleResult'></collection>
+	</resultMap>
+</mapper>
