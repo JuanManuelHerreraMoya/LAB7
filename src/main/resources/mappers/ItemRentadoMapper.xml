@@ -6,10 +6,15 @@
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper">
 	<resultMap type="ItemRentado" id ="ItemRentadoResult">
 			<id column = "id" property="id"/>
-			<association javaType = "Clientes_documento" property="CLIENTES_documentos"/>
-			<association javaType = "ITEMS_id" property="ITEMS_id"/>
-			<result column = "fechainiciorenta" property="fechainiciorenta"/>
-			<result column = "fechafinrenta" property="fechafinrenta"/>
-			<collection property='propiedad3' ofType='Detalle' resultMap='DetalleResult'></collection>
+			<id column="id" property="id"/>
+			<result column="fecha" property="fecha"/>
+			<result column="fechafinrenta" property="fechafinrenta"/>
+			<collection property='item' ofType='item' columnPrefix='item_' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult"></collection>
 	</resultMap>
+	<insert parameterType="map" id="insertarTipoItem">
+		inset into VI_ITEMRENTADO(id,clientes,ITEMS_id,fechainiciorenta,fechafinrenta) values (#{irid.id},#{irid.clientes},#{irid.ITEMS_id},#{irid.fechainiciorenta},#{irid.fechafinrenta})
+	</insert>
+	<select parameterType="map" id="consultarItemRentado" resultMap="ItemRentadoResult">
+		select * from VI_ITEMRENTADO where id = #{irid}
+	</select>
 </mapper>

@@ -11,37 +11,91 @@
 			<result column = "direccion" property="direccion"/>
 			<result column = "email" property="email"/>
 			<result column = "vetado" property="vetado"/>
-			<collection property='propiedad3' ofType='Detalle' resultMap='DetalleResult'></collection>
+			<collection property='rentados' ofType='ItemRentado' resultMap ='edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult' columnPrefix='itemrentado_' ></collection>></collection>
 	</resultMap>
 
 	<select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
-		select 
+		select
 		c.nombre,
 		c.documento,
 		c.telefono,
 		c.direccion,
 		c.email,
 		c.vetado,
-		
+
 		ir.id ,
 		ir.fechainiciorenta ,
 		ir.fechafinrenta ,
-		
+
 		i.id ,
 		i.nombre ,
 		i.descripcion ,
 		i.fechalanzamiento ,
 		i.tarifaxdia ,
 		i.formatorenta ,
-		i.genero ,        
+		i.genero ,
 		ti.id ,
-		ti.descripcion 
+		ti.descripcion
 
-		
-		FROM VI_CLIENTES as c 
-		left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento 
-		left join VI_ITEMS as i on ir.ITEMS_id=i.id 
+
+		FROM VI_CLIENTES as c
+		left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento
+		left join VI_ITEMS as i on ir.ITEMS_id=i.id
 		left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
 	</select>
-          	
+
+	<select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
+		select
+		c.nombre,
+		c.documento,
+		c.telefono,
+		c.direccion,
+		c.email,
+		c.vetado,
+		ir.id as itemrentado_id,
+		ir.fechainiciorenta as itemrentado_fechainiciorenta,
+		ir.fechafinrenta as itemrentado_fechafinrenta,
+		i.id as item_id,
+		i.nombre as item_nombre,
+		i.descripcion as item_descripcion,
+		i.fechalanzamiento as item_fechalanzamiento,
+		i.tarifaxdia as item_tarifaxdia,
+		i.formatorenta as item_formatorenta,
+		i.genero as item_genero,
+		ti.id as tipoitem_id,
+		ti.descripcion as tipoitem_descripcion
+		FROM VI_CLIENTES as c
+		left join VI_ITEMRENTADO as ir on c.documento=ir.CLIENTES_documento
+		left join VI_ITEMS as i on ir.ITEMS_id=i.id
+		left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
+	</select>
+
+	<insert parameterType="map" id="agregarItemRentadoACliente" >
+		insert into VI_ITEMRENTADO(id,CLIENTES_documento,ITEMS_idfechainiciorenta,fechafinrenta) values (50,#{idcli},#{iditcli},#{ficli},#{ffcli})
+	</insert>
+
+	<insert  parameterType="map" id="insertarCliente">
+		insert into VI_CLIENTES(documento,nombre,telefono,direccion,email,vetado) values (#{cliente.documento}, #{cliente.nombre}, #{cliente.telefono}, #{cliente.direccion}, #{cliente.email}, #{cliente.vetado})
+	</insert>
+
+	<select parameterType="map" id="consultarClientee" resultMap="ClienteResult" >
+		select
+		c.nombre,
+		c.documento,
+		c.telefono,
+		c.direccion,
+		c.email,
+		c.vetado
+		from VI_CLIENTES as c where documento = #{docu}
+	</select>
+
+	<select parameterType="map" id="consultarItemsCliente" resultMap="ClienteResult" >
+		select c.nombre, i.nombre from VI_CLIENTES as c join VI_ITEMRENTADO as ir on c.documento = #{docu} join VI_ITEMS as i on ir.ITEMS_id = i.id
+	</select>
+
+	<update parameterType ='map' id="actualizarCliente">
+		UPDATE VI_CLIENTES SET vetado = #{estado} where documento = #{docu}
+
+	</update>
+
 </mapper>
