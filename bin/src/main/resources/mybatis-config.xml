@@ -1,20 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <!--<settings>
+    <settings>
         <setting name="logImpl" value="LOG4J"/>        
     </settings>-->
-    
-    <properties resource="config.properties">
-    </properties>
-    <typeAliases>
+        <typeAliases>
         <typeAlias type="edu.eci.cvds.samples.entities.Cliente" alias="Cliente"/>
         <typeAlias type="edu.eci.cvds.samples.entities.Item" alias="Item"/>
         <typeAlias type="edu.eci.cvds.samples.entities.ItemRentado" alias="ItemRentado"/>
         <typeAlias type="edu.eci.cvds.samples.entities.TipoItem" alias="TipoItem"/>
     </typeAliases>	
+    <properties resource="config.properties">
+    </properties>
+
+
 
     <environments default="development">
         <environment id="development">

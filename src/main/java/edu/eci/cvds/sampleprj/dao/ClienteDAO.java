@@ -18,4 +18,8 @@ public interface ClienteDAO {
     List<Cliente> consultarClientes() throws ExcepcionServiciosAlquiler;
 
     List<ItemRentado> consultarItemsCliente(int id) throws ExcepcionServiciosAlquiler;
+
+	Cliente consultarCliente(long docu);
+
+	void actualizarCliente(long docu, int i);
 }

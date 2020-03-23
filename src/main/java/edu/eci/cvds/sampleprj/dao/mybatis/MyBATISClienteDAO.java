@@ -66,4 +66,16 @@ public class MyBATISClienteDAO implements ClienteDAO {
             throw new UnsupportedOperationException("Error al consultar de id: ",e);
         }
     }
+
+	@Override
+	public Cliente consultarCliente(long docu) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void actualizarCliente(long docu, int i) {
+		// TODO Auto-generated method stub
+		
+	}
 }

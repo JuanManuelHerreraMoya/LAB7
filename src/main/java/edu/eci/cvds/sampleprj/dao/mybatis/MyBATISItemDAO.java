@@ -11,6 +11,7 @@ import edu.eci.cvds.samples.services.ExcepcionServiciosAlquiler;
 import org.apache.ibatis.exceptions.PersistenceException;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class MyBATISItemDAO implements ItemDAO{
 
@@ -43,5 +44,29 @@ public class MyBATISItemDAO implements ItemDAO{
         return item;
 
     }
+
+	@Override
+	public int valorMultaRetrasoxDia(int id) throws PersistenceException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Item> consultarItemsDisponibles() throws PersistenceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long consultarCostoAlquiler(int iditem, int numdias) throws PersistenceException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void actualizarTarifaItem(int id, long tarifa) throws PersistenceException {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
